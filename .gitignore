@@ -10,7 +10,7 @@ media
 *.py[cod]
 *$py.class
 
-
+.idea/
 *.so
 
 .Python
