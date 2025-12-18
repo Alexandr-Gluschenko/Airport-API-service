@@ -6,12 +6,6 @@ from flights.models import Flight
 from routes.serializers import RouteSerializer
 
 
-class FlightWriteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Flight
-        fields = ["route", "airplane", "crew", "departure_time", "arrival_time"]
-
-
 class FlightReadSerializer(serializers.ModelSerializer):
     route = RouteSerializer(read_only=True)
     airplane = AirplaneReadSerializer(read_only=True)
@@ -20,3 +14,16 @@ class FlightReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flight
         fields = ["id", "route", "airplane", "crew", "departure_time", "arrival_time"]
+
+
+class FlightWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Flight
+        fields = ["route", "airplane", "crew", "departure_time", "arrival_time"]
+
+    def validate(self, data):
+        if data["departure_time"] >= data["arrival_time"]:
+            raise serializers.ValidationError(
+                "Arrival time must be later than departure time."
+            )
+        return data

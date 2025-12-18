@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from airplanes.models import Airplane
@@ -18,6 +19,16 @@ class Flight(models.Model):
 
     departure_time = models.DateTimeField()
     arrival_time = models.DateTimeField()
+
+    def clean(self):
+        if self.departure_time >= self.arrival_time:
+            raise ValidationError(
+                {"arrival_time": "Arrival time must be later than departure time."}
+            )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.route} {self.airplane} {self.departure_time} {self.arrival_time}"
