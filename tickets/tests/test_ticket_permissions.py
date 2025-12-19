@@ -7,7 +7,7 @@ from tickets.models import Ticket
 
 @pytest.mark.django_db
 def test_anonymous_doesnt_have_access(api_client):
-    response = api_client.get('/api/tickets')
+    response = api_client.get('/api/tickets/')
     assert response.status_code == 401
 
 @pytest.mark.django_db
