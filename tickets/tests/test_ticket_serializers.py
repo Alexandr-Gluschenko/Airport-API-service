@@ -21,6 +21,7 @@ def test_serializer_ticket_read_is_valid(flight, order):
     assert data["seat"] == 5
     assert "order" not in data
 
+
 @pytest.mark.django_db
 def test_serializer_ticket_write_is_valid(flight, order):
     data = {

@@ -1,7 +1,5 @@
 import pytest
 from django.db import IntegrityError
-from pygments.lexers import q
-
 from airplanes.models import Airplane, AirPlaneType
 
 
@@ -14,6 +12,7 @@ def test_airplane_str():
                         airplane_type=airplane_type)
 
     assert str(airplane) == airplane.name
+
 
 @pytest.mark.django_db
 def test_cant_create_airplane_with_same_name():
@@ -34,6 +33,7 @@ def test_cant_create_airplane_with_same_name():
             airplane_type=airplane_type,
         )
 
+
 @pytest.mark.django_db
 def test_cant_create_airplane_without_airplane_type():
     with pytest.raises(IntegrityError):
@@ -43,6 +43,7 @@ def test_cant_create_airplane_without_airplane_type():
             seats_in_rows=3,
             airplane_type=None,
         )
+
 
 @pytest.mark.django_db
 def test_on_unavailability_negative_rows_and_seats_airplane():
@@ -54,6 +55,7 @@ def test_on_unavailability_negative_rows_and_seats_airplane():
             seats_in_rows=-3,
             airplane_type=airplane_type,
         )
+
 
 @pytest.mark.django_db
 def test_airplane_cant_create_without_rows_and_seats():

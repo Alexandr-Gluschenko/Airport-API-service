@@ -17,6 +17,7 @@ def test_ticket_created_with_valid_data(flight, order):
     assert ticket.flight == flight
     assert ticket.order == order
 
+
 @pytest.mark.django_db
 def test_second_ticket_with_same_data_send_integrity_error(flight, order):
     Ticket.objects.create(
@@ -33,6 +34,7 @@ def test_second_ticket_with_same_data_send_integrity_error(flight, order):
             order=order,
         )
 
+
 @pytest.mark.django_db
 def test_ticket_deleted_when_flight_deleted(flight, order):
     Ticket.objects.create(
@@ -45,6 +47,7 @@ def test_ticket_deleted_when_flight_deleted(flight, order):
     flight.delete()
 
     assert Ticket.objects.count() == 0
+
 
 @pytest.mark.django_db
 def test_ticket_deleted_when_order_deleted(flight, order):

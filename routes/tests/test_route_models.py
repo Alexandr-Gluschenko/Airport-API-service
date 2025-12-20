@@ -16,6 +16,7 @@ def test_route_correctly_created_valid_data():
     )
     assert Route.objects.count() == 1
 
+
 @pytest.mark.django_db
 def test_route_model_rejects_negative_distance():
     airport_a = Airport.objects.create(name="Kyiv")
@@ -27,6 +28,7 @@ def test_route_model_rejects_negative_distance():
     )
     with pytest.raises(ValidationError):
         route.full_clean()
+
 
 @pytest.mark.django_db
 def test_correctly_operation_of_related_objects():
@@ -40,6 +42,7 @@ def test_correctly_operation_of_related_objects():
     assert airport_a.routes_from.count() == 1
     assert airport_b.routes_to.count() == 1
     assert route in airport_a.routes_from.all()
+
 
 @pytest.mark.django_db
 def test_route_deleted_when_source_airport_deleted():
@@ -57,6 +60,7 @@ def test_route_deleted_when_source_airport_deleted():
 
     assert Route.objects.count() == 0
 
+
 @pytest.mark.django_db
 def test_route_deleted_when_destination_airport_deleted():
     source = Airport.objects.create(name="Kyiv")
@@ -70,4 +74,3 @@ def test_route_deleted_when_destination_airport_deleted():
     route.delete()
 
     assert Route.objects.count() == 0
-

@@ -24,14 +24,16 @@ def test_route_serializer_valid_data():
     assert "distance" in data
     assert data["distance"] == route.distance
 
+
 @pytest.mark.django_db
 def test_route_serializer_missing_source(airport):
     serializer = RouteSerializer(data={
         "destination": airport.id,
         "distance": 200,
     })
-    assert serializer.is_valid() == False
+    assert not serializer.is_valid()
     assert "source" in serializer.errors
+
 
 @pytest.mark.django_db
 def test_route_serializer_invalid_destination_id(airport):
@@ -40,5 +42,5 @@ def test_route_serializer_invalid_destination_id(airport):
         "distance": 200,
         "source": airport.id,
     })
-    assert serializer.is_valid() == False
+    assert not serializer.is_valid()
     assert "destination" in serializer.errors

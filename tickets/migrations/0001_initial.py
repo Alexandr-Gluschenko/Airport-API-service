@@ -17,14 +17,23 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Ticket',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True,
+                                           serialize=False,
+                                           verbose_name='ID')),
                 ('row', models.PositiveIntegerField()),
                 ('seat', models.PositiveIntegerField()),
-                ('flight', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='tickets', to='flights.flight')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='tickets', to='orders.order')),
+                ('flight', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                             related_name='tickets',
+                                             to='flights.flight')),
+                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                            related_name='tickets',
+                                            to='orders.order')),
             ],
             options={
-                'constraints': [models.UniqueConstraint(fields=('row', 'seat', 'flight'), name='unique_seat_per_flight')],
+                'constraints': [models.UniqueConstraint(fields=('row',
+                                                                'seat', 'flight'),
+                                                        name='unique_seat_per_flight')],
             },
         ),
     ]

@@ -19,5 +19,6 @@ class AirportSerializer(serializers.ModelSerializer):
 
     def validate_closest_big_city(self, value):
         if not re.match(r"^[A-Za-z\s-]+$", value):
-            raise serializers.ValidationError("Closest city must contain only letters")
+            raise serializers.ValidationError("Closest city"
+                                              " must contain only letters")
         return value

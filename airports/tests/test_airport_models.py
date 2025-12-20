@@ -7,5 +7,3 @@ from airports.models import Airport
 def test_airport_str():
     airport = Airport(name="Kyiv")
     assert str(airport) == airport.name
-
-

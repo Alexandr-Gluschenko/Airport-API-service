@@ -7,6 +7,7 @@ class AirplaneSerializer(serializers.ModelSerializer):
         model = Airplane
         fields = ["name", "rows", "seats_in_rows", "airplane_type"]
 
+
 class AirplaneTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = AirPlaneType
@@ -24,6 +25,7 @@ class AirplaneWriteSerializer(serializers.ModelSerializer):
 
 class AirplaneReadSerializer(serializers.ModelSerializer):
     airplane_type = AirplaneTypeSerializer(read_only=True)
+
     class Meta:
         model = Airplane
         fields = ["id", "name", "rows", "seats_in_rows", "airplane_type"]

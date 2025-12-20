@@ -8,7 +8,8 @@ from flights.serializers import (FlightWriteSerializer,
 
 # Create your views here.
 class FlightViewSet(viewsets.ModelViewSet):
-    queryset = Flight.objects.select_related("route", "airplane").prefetch_related("crew")
+    queryset = Flight.objects.select_related(
+        "route", "airplane").prefetch_related("crew")
     permission_classes = [IsAdminOrAuthenticatedReadOnly]
 
     def get_serializer_class(self):

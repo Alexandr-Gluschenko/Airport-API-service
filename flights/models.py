@@ -23,7 +23,8 @@ class Flight(models.Model):
     def clean(self):
         if self.departure_time >= self.arrival_time:
             raise ValidationError(
-                {"arrival_time": "Arrival time must be later than departure time."}
+                {"arrival_time": "Arrival time"
+                                 " must be later than departure time."}
             )
 
     def save(self, *args, **kwargs):
@@ -31,4 +32,5 @@ class Flight(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.route} {self.airplane} {self.departure_time} {self.arrival_time}"
+        return (f"{self.route}"
+                f" {self.airplane} {self.departure_time} {self.arrival_time}")

@@ -17,6 +17,7 @@ def test_flight_write_serializer_valid_data(route, airplane, crew):
     })
     assert flight_serializer.is_valid(), flight_serializer.errors
 
+
 @pytest.mark.django_db
 def test_flight_write_serializer_crew_cant_be_empty(route, airplane):
     flight_serializer = FlightWriteSerializer(data={
@@ -29,8 +30,11 @@ def test_flight_write_serializer_crew_cant_be_empty(route, airplane):
     assert not flight_serializer.is_valid()
     assert "crew" in flight_serializer.errors
 
+
 @pytest.mark.django_db
-def test_flight_write_serializer_arrival_before_departure_invalid(crew, route, airplane):
+def test_flight_write_serializer_arrival_before_departure_invalid(crew,
+                                                                  route,
+                                                                  airplane):
     serializer = FlightWriteSerializer(data={
         "route": route.id,
         "airplane": airplane.id,

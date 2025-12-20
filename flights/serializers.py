@@ -13,13 +13,22 @@ class FlightReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Flight
-        fields = ["id", "route", "airplane", "crew", "departure_time", "arrival_time"]
+        fields = ["id",
+                  "route",
+                  "airplane",
+                  "crew",
+                  "departure_time",
+                  "arrival_time"]
 
 
 class FlightWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flight
-        fields = ["route", "airplane", "crew", "departure_time", "arrival_time"]
+        fields = ["route",
+                  "airplane",
+                  "crew",
+                  "departure_time",
+                  "arrival_time"]
 
     def validate(self, data):
         if data["departure_time"] >= data["arrival_time"]:

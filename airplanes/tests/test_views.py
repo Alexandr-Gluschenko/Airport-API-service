@@ -20,6 +20,7 @@ def test_airplane_admin_can_create(api_client, admin_user, airplane_type):
 
     assert Airplane.objects.filter(name="Boeing 737").exists()
 
+
 @pytest.mark.django_db
 def test_airplane_user_cant_create(api_client, airplane_type):
     payload = {
@@ -33,6 +34,7 @@ def test_airplane_user_cant_create(api_client, airplane_type):
     assert response.status_code == 401
 
     assert not Airplane.objects.filter(name="Boeing 737").exists()
+
 
 @pytest.mark.django_db
 def test_airplane_auth_user_cant_create(api_client, user, airplane_type):
@@ -48,6 +50,7 @@ def test_airplane_auth_user_cant_create(api_client, user, airplane_type):
     assert response.status_code == 403
     assert not Airplane.objects.filter(name="Boeing 737").exists()
 
+
 @pytest.mark.django_db
 def test_airplane_auth_user_can_read(api_client, user, airplane_type):
     Airplane.objects.create(
@@ -61,4 +64,3 @@ def test_airplane_auth_user_can_read(api_client, user, airplane_type):
 
     assert response.status_code == 200
     assert response.data
-

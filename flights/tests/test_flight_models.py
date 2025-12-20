@@ -23,6 +23,7 @@ def test_flight_arrival_time_must_be_after_departure_time(route, airplane):
 
     assert "arrival_time" in info.value.message_dict
 
+
 @pytest.mark.django_db
 def test_flight_with_valid_times_is_valid(route, airplane):
     departure = timezone.now()
@@ -35,6 +36,7 @@ def test_flight_with_valid_times_is_valid(route, airplane):
     )
 
     flight.full_clean()
+
 
 @pytest.mark.django_db
 def test_flight_arrival_equal_departure_is_invalid(route, airplane):

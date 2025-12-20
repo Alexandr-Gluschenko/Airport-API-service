@@ -1,7 +1,9 @@
 from rest_framework import viewsets
 
 from airplanes.models import Airplane
-from airplanes.serializers import AirplaneWriteSerializer, AirplaneReadSerializer, AirplaneTypeSerializer
+from airplanes.serializers import (AirplaneWriteSerializer,
+                                   AirplaneReadSerializer,
+                                   AirplaneTypeSerializer)
 from config.permissions import IsAdminOrAuthenticatedReadOnly
 
 

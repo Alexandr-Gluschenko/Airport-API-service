@@ -6,6 +6,7 @@ def test_flight_list_returns_401(api_client):
     response = api_client.get('/api/flights/')
     assert response.status_code == 401
 
+
 @pytest.mark.django_db
 def test_admin_can_update_flight(api_client, admin_user, flight):
     api_client.force_authenticate(user=admin_user)

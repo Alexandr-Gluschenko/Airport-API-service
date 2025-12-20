@@ -15,6 +15,7 @@ def test_airplane_serializer_valid_data():
     })
     assert serializer.is_valid(), serializer.errors
 
+
 @pytest.mark.django_db
 def test_airplane_serializer_not_valid_data():
     serializer = AirplaneSerializer(data={
@@ -25,6 +26,7 @@ def test_airplane_serializer_not_valid_data():
     })
     assert not serializer.is_valid()
     assert "airplane_type" in serializer.errors
+
 
 @pytest.mark.django_db
 def test_airplane_serializer_name_cannot_be_blank():
@@ -37,6 +39,7 @@ def test_airplane_serializer_name_cannot_be_blank():
     })
     assert not serializer.is_valid()
     assert "name" in serializer.errors
+
 
 @pytest.mark.django_db
 def test_airplane_serializer_name_is_required():
